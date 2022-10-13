@@ -1,0 +1,39 @@
+<h3><b>Add Category</b></h3>
+<form getwebsite="{{website}}" getID="{{id}}">
+    <!-- Website -->
+    <div class="mb-3 mt-3">
+        <label for="website" class="form-label">Website: {{website}}</label>
+    </div>
+
+    <!-- Catg -->
+    <div class="mb-3 mt-3">
+        <label for="catg" class="form-label">Category:</label>
+        <input type="text" class="form-control py-3" id="catg" placeholder="Enter catg ..." name="catg" value="{{catg}}">
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button type="reset" class="btn text-danger me-3">Reset</button>
+        <a id="submit" style="cursor:pointer;" class="btn btn-primary w3-padding-large">Submit</a>
+    </div>
+</form>
+
+<script>
+    let submit_form = document.querySelector('#submit');
+
+    submit_form.addEventListener('click', async () => {
+        let catg = document.querySelector('#catg').value.toLowerCase();
+        let website = document.querySelector('form[getwebsite]').getAttribute('getwebsite');
+        let id = document.querySelector('form[getID]').getAttribute('getID');
+        const catg_data = { id, catg };
+        const options = {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(catg_data)
+        };
+        alert('Category Updated !');
+        let respond = await fetch(`/api/update-catg-${website}`, options);
+        let data = respond.json();
+    });
+</script>

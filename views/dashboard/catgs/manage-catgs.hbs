@@ -1,0 +1,81 @@
+<h3><b>All Categories</b> <span class="badge bg-primary count-categories"></span></h3>
+<div class="container-fluid">
+
+    <div class="row-xsm">
+        <!-- news -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-header py-2 py-sm-2 py-md-3 alert alert-primary mb-0">
+                <h5>
+                    <b>News's Categories</b>
+                    <div class="badge bg-primary news-badge"></div>
+                </h5>
+            </div>
+            <div>
+                <div class="card-body news-tags row-xsm row-sm row-md-3 row-lg"></div>
+            </div>
+        </div>
+        <!-- Sport -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-header py-2 py-sm-2 py-md-3 alert alert-primary mb-0">
+                <h5>
+                    <b>Sport's Categories</b>
+                    <div class="badge bg-primary sport-badge"></div>
+                </h5>
+            </div>
+            <div>
+                <div class="card-body sport-tags row-xsm row-sm row-md-3 row-lg"></div>
+            </div>
+        </div>
+        <!-- wiki -->
+        <div class="card border-0 shadow-sm">
+            <div class="card-header py-2 py-sm-2 py-md-3 alert alert-primary mb-0">
+                <h5>
+                    <b>Wiki's Categories</b>
+                    <div class="badge bg-primary wiki-badge"></div>
+                </h5>
+            </div>
+            <div>
+                <div class="card-body wiki-tags row-xsm row-sm row-md-3 row-lg"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    loadTags('news');
+    loadTags('sport');
+    loadTags('wiki');
+    async function loadTags(arg) {
+        let req = await fetch(`/api/get-catgs-${arg}`);
+        let data = await req.json();
+
+        function compareStrings(a, b) {
+            a = a.toLowerCase();
+            b = b.toLowerCase();
+            return (a < b) ? -1 : (a > b) ? 1 : 0;
+        }
+        let reqBadge = document.querySelector(`.${arg}-badge`);
+        reqBadge.innerHTML = data.length;
+        data.sort(function (a, b) {
+            return compareStrings(a.catg, b.catg);
+        });
+        let reqTags = document.querySelector(`.${arg}-tags`);
+        let frag = document.createDocumentFragment();
+        if (data.length === 0) {
+            reqTags.innerHTML = '<h6>No data found !</h6>'
+        }
+        data.forEach(e => {
+            let container = document.createElement('div');
+            container.setAttribute('class', 'row-xsm w3-container bg-light border border-1 rounded-1');
+            container.innerHTML = `
+                <h6 class="d-flex justify-content-center text-dark"><b>${e.catg}</b></h6>
+                <div class="row-xsm row-sm g-2">
+                    <a href="/edit_catg/id=${e._id}/wbs=${e.website}" class="btn alert alert-primary w3-hover-blue">Edit</a>
+                    <a href="/api/remove-catg-${arg}/id=${e._id}" class="btn alert alert-danger w3-hover-red">Delete</a>
+                </div>
+            `;
+            frag.append(container);
+            reqTags.append(frag);
+        });
+    }
+</script>

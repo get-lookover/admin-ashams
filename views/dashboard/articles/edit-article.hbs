@@ -1,0 +1,73 @@
+<h3><b>Update article</b></h3>
+<form getID="{{id}}" getWbs="{{website}}">
+    <!-- Website -->
+    <div class="mb-3 mt-3">
+        <label for="website" class="form-label">Website: <b>{{website}}</b></label>
+    </div>
+
+    <!-- Title -->
+    <div class="mb-3 mt-3">
+        <label for="title" class="form-label">Title:</label>
+        <input type="text" class="form-control py-3" id="title" placeholder="Enter title ..." name="title" value="{{arttitle}}">
+    </div>
+    
+    <!-- Header Image -->
+    <div class="mb-3">
+        <label for="header-img" class="form-label">Header Image:</label>
+        <input type="text" class="form-control py-3" id="header-img" placeholder="Enter header image link ..." name="h-img" value="{{image}}">
+    </div>
+    
+    <!-- Resume -->
+    <div class="mb-3"> 
+        <label for="resume" class="form-label">Resume:</label>
+        <textarea class="form-control py-3" rows="5" id="resume" name="resume" placeholder="Enter resume ...">{{resume}}</textarea> 
+    </div>
+    
+    <!-- Category -->
+    <div class="mb-3"> 
+        <label for="catg" class="form-label">Categories</label>
+        <input class="form-control py-3" list="catgs" name="catg" id="catg" placeholder="Select category ..." value="{{catg}}">
+        <datalist id="catgs">
+            <option value="football">Football</option>
+            <option value="aquaculture">Aquaculture</option>
+            <option value="managment">Managment</option>
+            <option value="codding">Codding</option>
+        </datalist> 
+    </div>
+
+    <!-- Content -->
+    <div class="mb-3"> 
+        <label for="content" class="form-label">Main content:</label>
+        <textarea class="form-control py-3" rows="20" id="content" name="content" placeholder="Enter content ... (vanilla HTML / Markup.js)">{{content}}</textarea> 
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button type="reset" class="btn text-danger me-3">Reset</button>
+        <a id="submit" style="cursor:pointer;" class="btn btn-primary w3-padding-large">Submit</a>
+    </div>
+</form>
+
+<script>
+    let submit_form = document.querySelector('#submit');
+
+    submit_form.addEventListener('click', async () => {
+        let title = document.querySelector('#title').value,
+            image = document.querySelector('#header-img').value,
+            resume = document.querySelector('#resume').value,
+            catg = document.querySelector('#catg').value,
+            content = document.querySelector('#content').value,
+            id = document.querySelector('form[getID]').getAttribute('getID');
+            website = document.querySelector('form[getID]').getAttribute('getID');
+        const article_data = { id, title, image, resume, catg, content };
+        const options = {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(article_data)
+        };
+        alert('Article updated !')
+        let respond = await fetch(`/api/update-article-${website}`, options);
+        let data = respond.json();
+    });
+</script>

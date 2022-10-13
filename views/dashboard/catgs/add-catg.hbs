@@ -1,0 +1,45 @@
+<h3><b>Add Category</b></h3>
+<form>
+
+    <!-- Website -->
+    <div class="mb-3 mt-3">
+        <label for="website" class="form-label">Website:</label>
+        <select class="form-select py-3" id="website">
+            <option selected="selected" disabled="desabled">Select website</option>
+            <option value="news">Ashams News</option>
+            <option value="sport">Ashams Sports</option>
+            <option value="wiki">Ashams Wiki</option>
+        </select> 
+    </div>
+
+    <!-- Catg -->
+    <div class="mb-3 mt-3">
+        <label for="catg" class="form-label">Category:</label>
+        <input type="text" class="form-control py-3" id="catg" placeholder="Enter catg ..." name="catg">
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <button type="reset" class="btn text-danger me-3">Reset</button>
+        <a id="submit" style="cursor:pointer;" class="btn btn-primary w3-padding-large">Submit</a>
+    </div>
+</form>
+
+<script>
+    let submit_form = document.querySelector('#submit');
+
+    submit_form.addEventListener('click', async () => {
+        let catg = document.querySelector('#catg').value.toLowerCase(),
+            website = document.querySelector('#website').value;
+        const catg_data = { website, catg };
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(catg_data)
+        };
+        let respond = await fetch(`/api/add-catg-${website}`, options);
+        let data = respond.json();
+        alert('Category added !');
+    });
+</script>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }} | Admins</title>
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/w3.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark header sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><b>Ashams Team</b></a>
+      <div class="justify-content-end">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link d-none d-sm-none d-md-inline-flex d-lg-inline-flex">Only Admins can access to that
+              page</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link navbar-toggler d-sm-inline-flex d-md-none d-lg-none"
+              style="cursor: pointer; font-size: 20px; border: none;"><span class="navbar-toggler-icon"></span></a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Body -->
+  <div class="container-fluid">
+    <div class="row">
+      <div
+        class="navbar navbar-dark col-3 bg-dark text-light px-3 py-2 d-none d-sm-none d-md-flex d-lg-flex flex-column justify-content-start"
+        id="sidebar">
+        <ul class="navbar-nav d-flex w-100 my-md-2 my-lg-2" style="margin-top: 80px;">
+          <!-- Websites -->
+          <li class="nav-item mb-2">
+            <button
+              class="nav-link border border-1 w3-border-dark-gray sidebar-dropdown-toggler w-100 w3-button w3-hover-blue w3-hover-border-blue d-flex justify-content-between rounded-2">Websites</button>
+            <ul class="dropdown-menu show dropdown-menu-dark mt-2 rounded-2">
+              <li><a class="dropdown-item" href="/"><span class="ft-xsm ft-sm ft-md ft-lg" style="margin-right: 12px;">&#128101;</span> Admins</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0)" target="_blank"><span class="ft-xsm ft-sm ft-md ft-lg" style="margin-right: 12px;">&#127757;</span> Ashams News</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0)" target="_blank"><span class="ft-xsm ft-sm ft-md ft-lg" style="margin-right: 12px;">&#9917;</span> Ashams Sports</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0)" target="_blank"><span class="ft-xsm ft-sm ft-md ft-lg" style="margin-right: 12px;">&#128278;</span> Ashams Wiki</a></li>
+            </ul>
+          </li>
+
+          <!-- Articles -->
+          <li class="nav-item mb-2">
+            <button
+              class="nav-link border border-1 w3-border-dark-gray sidebar-dropdown-toggler w-100 w3-button w3-hover-blue w3-hover-border-blue d-flex justify-content-between rounded-2">Articles</button>
+            <ul class="dropdown-menu show dropdown-menu-dark mt-2 rounded-2">
+              <li><a class="dropdown-item" href="/add_article"><span class="ft-xsm ft-sm ft-md ft-lg" style="margin-right: 12px;">&#10002;</span> Add Article</a></li>
+              <li><a class="dropdown-item" href="/manage_articles"><span class="ft-xsm ft-sm ft-md ft-lg" style="margin-right: 12px;">&#9937;</span> Manage Articles <span class="badge bg-danger count-articles"></span></a></li>
+            </ul>
+          </li>
+
+          <!-- Categories -->
+          <li class="nav-item mb-2">
+            <button
+              class="nav-link border border-1 w3-border-dark-gray sidebar-dropdown-toggler w-100 w3-button w3-hover-blue w3-hover-border-blue d-flex justify-content-between rounded-2">Categories</button>
+            <ul class="dropdown-menu show dropdown-menu-dark mt-2 rounded-2">
+              <li><a class="dropdown-item" href="/add_catg"><span class="ft-xsm ft-sm ft-md ft-lg" style="margin-right: 12px;">&#10002;</span> Add category</a></li>
+              <li><a class="dropdown-item" href="/manage_catg"><span class="ft-xsm ft-sm ft-md ft-lg" style="margin-right: 12px;">&#9937;</span> Manage categories <span class="badge bg-danger count-categories"></span></a></li>
+            </ul>
+          </li>
+
+          <!-- Categories -->
+          <li class="nav-item mb-2">
+            <a class="nav-link border border-1 w3-border-dark-gray w-100 w3-button w3-hover-blue w3-hover-border-blue d-flex justify-content-between rounded-2" href="/review_comments">
+              <span>Comments <span class="badge bg-danger count-comments">0</span></span><span>&#10148;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="body-cont col-md-9 col-lg-9 col-sm-12 bg-light p-3">{{{body}}}</div>
+    </div>
+  </div>
+
+  <script src="/javascripts/jquery-3.6.1.min.js"></script>
+  <script src="/javascripts/bootstrap.bundle.min.js"></script>
+  <script src="/javascripts/index.js"></script>
+</body>
+
+</html>
