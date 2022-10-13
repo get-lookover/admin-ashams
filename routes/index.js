@@ -66,7 +66,7 @@ router.get("/edit_article_:wbs/id=:id", function (req, res, next) {
     res.render("dashboard/articles/edit-article", {
       title: `Edit Article`,
       id: req.params.id,
-      website: data.website,
+      website: req.params.wbs,
       arttitle: data.title,
       image: data.image,
       resume: data.resume,
